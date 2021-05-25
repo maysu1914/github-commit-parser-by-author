@@ -6,7 +6,7 @@ commit_list = [];
 for (let timeline of timeline_bodies) {
     commit_bodies = timeline.querySelectorAll("div.flex-auto.min-width-0");
     for (commit_body of commit_bodies) {
-        commit = commit_body.querySelectorAll('p.mb-1, div.Details-content--hidden');
+        commit = commit_body.querySelectorAll('a.Link--primary.markdown-title, pre.text-small');
         author = commit_body.querySelector('.commit-author');
         if (getText(author) == author_name) {
             commit_message = getText(commit);
@@ -24,7 +24,7 @@ function getText(element) {
     if (NodeList.prototype.isPrototypeOf(element)) {
         text = '';
         for (el of element) {
-            text += el.textContent.replace('↵', '').replace('…', '').replace('…', '').trim();
+            text += el.textContent.replace('↵', '').replace('…', '').replace('…', '');
         }
         return text.split('\n').join('|').replace('||', '|').split('|').join('\n')
     } else {
